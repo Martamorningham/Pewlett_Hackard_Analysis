@@ -62,3 +62,18 @@ FOREIGN KEY (emp_no) REFERENCES employees (emp_no),
 
 --confirm table is there with select
 SELECT * FROM departments;
+SELECT * FROM employees;
+
+-- delete dept_emp table and recreate
+DROP TABLE dept_emp CASCADE;
+
+--recreate  dept_emp with dep_no and emp-no in correct order
+CREATE TABLE dept_emp (
+	emp_no INT NOT NULL,
+	dept_no varchar NOT NULL,
+	from_date DATE NOT NULL,
+	to_date DATE NOT NULL,
+FOREIGN KEY (dept_no) REFERENCES departments (dept_no),
+FOREIGN KEY (emp_no) REFERENCES employees (emp_no),
+    PRIMARY KEY (dept_no,emp_no)
+);
